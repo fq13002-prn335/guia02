@@ -1,0 +1,21 @@
+version: '2'
+services:
+  servuno:
+    image: 'postgres-imagen'
+    build: ./postgres/.
+    container_name: 'psqlalpine-prn335​'
+    ports:
+      - "5432:5432"
+    volumes:
+       - /db:/var/lib/postgresql/data​
+
+  servdos:
+    image: 'payara-imagen​'          
+    build: ./payara/.
+    container_name: 'payara-prn335​'
+    ports:
+      - "4848:4848"
+      - "8080:8080"
+    entrypoint:
+     - start-domain
+     - -v 
